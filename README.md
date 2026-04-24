@@ -1,18 +1,38 @@
-# 🚀 TaskFlow – Task Management System
+# 🚀 TaskFlow – Full Stack Task Management System
 
-A full-stack Task Management System built using **React.js**, **.NET Core Web API**, and **SQL Server**.  
-This application allows users to manage daily tasks efficiently with authentication, filtering, and a clean dashboard UI.
+A production-ready Task Management System built using **React.js**, **.NET Core Web API**, and **SQL Server**.  
+This project demonstrates real-world full-stack development with authentication, task tracking, and a clean dashboard UI.
+
+---
+
+## 🎯 Why This Project
+
+This project was built to demonstrate the ability to design and develop a complete full-stack application including:
+
+- Secure authentication using JWT
+- Scalable backend architecture (Repository Pattern)
+- Responsive frontend UI
+- Real-world task management features
 
 ---
 
 ## 🔥 Features
 
-- 🔐 User Authentication using JWT
+- 🔐 User Authentication (JWT)
 - 📝 Create, Update, Delete Tasks
 - ✅ Mark Tasks as Complete
 - 🔍 Filter Tasks (All / Completed / Pending)
-- 📊 Dashboard Overview (Task Stats)
+- 📊 Dashboard Overview (Task Statistics)
 - 👤 User-specific task management
+
+---
+
+## ⚙️ Backend Highlights
+
+- Clean architecture (Controller → Service → Repository)
+- JWT-based authentication & authorization
+- Entity Framework Core for data access
+- SQL Server relational database design
 
 ---
 
@@ -26,26 +46,43 @@ This application allows users to manage daily tasks efficiently with authenticat
 
 ## 📸 Screenshots
 
-### 🔐 Login
-![Login](./screenshots/login.png)
-
 ### 📊 Dashboard
 ![Dashboard](./screenshots/dashboard.png)
+
+### 🔐 Login
+![Login](./screenshots/login.png)
 
 ### ✅ Tasks
 ![Tasks](./screenshots/tasks.png)
 
 ---
 
+## 🧠 Skills Demonstrated
+
+- Full-stack development  
+- REST API design  
+- Authentication & Authorization (JWT)  
+- Database design & relationships  
+- Clean UI development  
+
+---
+
+## 🌐 Live Demo
+
+Coming soon (deployment in progress)
+
+---
+
 ## 🛠 Setup Instructions
 
 ### 1️⃣ Clone Repository
+
 ```bash
 git clone https://github.com/gkdev512-lang/task-management-system.git
 cd task-management-system
 2️⃣ Setup Database
 Open SQL Server
-Run script:
+Run the script:
 /database/db_script.sql
 3️⃣ Run Backend
 cd backend
@@ -76,6 +113,4 @@ Improve UI with advanced components
 
 Gaurav
 
-## 🌐 Live Demo
-
-Coming soon (deployment in progress)
+⭐ If you like this project, feel free to star the repository!
