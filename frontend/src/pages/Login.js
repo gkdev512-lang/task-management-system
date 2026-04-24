@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Link,
   Paper,
   Stack,
   TextField,
@@ -33,16 +34,26 @@ const monochromeFieldSx = {
 };
 
 const primaryButtonSx = {
-  minHeight: 48,
-  borderRadius: 2,
+  minHeight: 42,
+  px: 2.25,
+  borderRadius: "10px",
+  fontWeight: 600,
+  letterSpacing: "-0.01em",
+  textTransform: "none",
   backgroundColor: "#000",
   color: "#fff",
+  transition: "transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease",
+  boxShadow: "0 10px 24px rgba(17, 24, 39, 0.14)",
   "&:hover": {
-    backgroundColor: "#111"
+    backgroundColor: "#111",
+    transform: "translateY(-2px)",
+    boxShadow: "0 16px 32px rgba(17, 24, 39, 0.20)"
   },
   "&.Mui-disabled": {
     backgroundColor: "#666",
-    color: "#fff"
+    color: "#fff",
+    transform: "none",
+    boxShadow: "none"
   }
 };
 
@@ -140,6 +151,19 @@ function Login() {
           >
             {isSubmitting ? <CircularProgress size={22} color="inherit" /> : "Login"}
           </Button>
+
+          <Typography variant="body2" color="text.secondary" textAlign="center">
+            Don&apos;t have an account?{" "}
+            <Link
+              component="button"
+              type="button"
+              onClick={() => navigate("/register")}
+              underline="hover"
+              sx={{ color: "#000", fontWeight: 600 }}
+            >
+              Register
+            </Link>
+          </Typography>
         </Stack>
       </Paper>
     </Box>

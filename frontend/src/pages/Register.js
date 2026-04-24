@@ -1,5 +1,16 @@
-import React from "react";
-import { Alert, Box, Paper, Stack, TextField, Typography, Button } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Alert,
+  Box,
+  Button,
+  CircularProgress,
+  Paper,
+  Stack,
+  TextField,
+  Typography
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import authService from "../services/authService";
 
 const monochromeFieldSx = {
   "& .MuiOutlinedInput-root": {
@@ -22,16 +33,65 @@ const monochromeFieldSx = {
 };
 
 const primaryButtonSx = {
-  minHeight: 48,
-  borderRadius: 2,
+  minHeight: 42,
+  px: 2.25,
+  borderRadius: "10px",
+  fontWeight: 600,
+  letterSpacing: "-0.01em",
+  textTransform: "none",
   backgroundColor: "#000",
   color: "#fff",
+  transition: "transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease",
+  boxShadow: "0 10px 24px rgba(17, 24, 39, 0.14)",
   "&:hover": {
-    backgroundColor: "#111"
+    backgroundColor: "#111",
+    transform: "translateY(-2px)",
+    boxShadow: "0 16px 32px rgba(17, 24, 39, 0.20)"
+  },
+  "&.Mui-disabled": {
+    backgroundColor: "#666",
+    color: "#fff",
+    transform: "none",
+    boxShadow: "none"
   }
 };
 
 function Register() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleRegister = async () => {
+    if (!username.trim() || !password.trim() || !confirmPassword.trim()) {
+      setError("Username, password, and confirm password are required.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      setError("");
+
+      await authService.register({
+        username: username.trim(),
+        password
+      });
+
+      navigate("/login");
+    } catch (registerError) {
+      setError(registerError.response?.data || "Registration failed. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -46,7 +106,7 @@ function Register() {
         elevation={0}
         sx={{
           width: "100%",
-          maxWidth: 480,
+          maxWidth: 420,
           p: 4,
           borderRadius: 4,
           border: "1px solid #000",
@@ -64,16 +124,44 @@ function Register() {
             </Typography>
           </Box>
 
-          <Alert severity="info">
-            Account registration UI is ready for API wiring next.
-          </Alert>
+          {error && <Alert severity="error">{error}</Alert>}
 
-          <TextField fullWidth label="Full Name" variant="outlined" sx={monochromeFieldSx} />
-          <TextField fullWidth label="Email" type="email" variant="outlined" sx={monochromeFieldSx} />
-          <TextField fullWidth label="Password" type="password" variant="outlined" sx={monochromeFieldSx} />
+          <TextField
+            fullWidth
+            label="Username"
+            variant="outlined"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            sx={monochromeFieldSx}
+          />
+          <TextField
+            fullWidth
+            label="Password"
+            type="password"
+            variant="outlined"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            sx={monochromeFieldSx}
+          />
+          <TextField
+            fullWidth
+            label="Confirm Password"
+            type="password"
+            variant="outlined"
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
+            sx={monochromeFieldSx}
+          />
 
-          <Button fullWidth variant="contained" size="large" sx={primaryButtonSx}>
-            Register
+          <Button
+            fullWidth
+            variant="contained"
+            size="large"
+            onClick={handleRegister}
+            disabled={isSubmitting}
+            sx={primaryButtonSx}
+          >
+            {isSubmitting ? <CircularProgress size={22} color="inherit" /> : "Register"}
           </Button>
         </Stack>
       </Paper>

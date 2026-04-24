@@ -26,7 +26,7 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import { CheckCheck, ClipboardList, Hourglass, LayoutDashboard, LogOut } from "lucide-react";
+import { CheckCheck, ClipboardList, Hourglass, LayoutDashboard, LogOut, UserCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import taskService from "../services/taskService";
 
@@ -75,13 +75,13 @@ const monochromeFieldSx = {
 };
 
 const modernButtonBaseSx = {
-  borderRadius: "8px",
+  borderRadius: "10px",
   fontWeight: 600,
   letterSpacing: "-0.01em",
   textTransform: "none",
-  transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease",
+  transition: "transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease",
   "&:hover": {
-    transform: "translateY(-1px)"
+    transform: "translateY(-2px)"
   },
   "&.Mui-disabled": {
     transform: "none",
@@ -91,13 +91,14 @@ const modernButtonBaseSx = {
 
 const primaryButtonSx = {
   ...modernButtonBaseSx,
-  minHeight: 44,
+  minHeight: 42,
+  px: 2.25,
   backgroundColor: themeColors.primary,
   color: "#fff",
-  boxShadow: "0 8px 20px rgba(79, 70, 229, 0.18)",
+  boxShadow: "0 10px 24px rgba(79, 70, 229, 0.16)",
   "&:hover": {
     backgroundColor: themeColors.primaryHover,
-    boxShadow: "0 12px 24px rgba(79, 70, 229, 0.24)"
+    boxShadow: "0 16px 32px rgba(79, 70, 229, 0.22)"
   },
   "&.Mui-disabled": {
     backgroundColor: themeColors.primaryBorder,
@@ -108,27 +109,29 @@ const primaryButtonSx = {
 
 const secondaryButtonSx = {
   ...modernButtonBaseSx,
-  minHeight: 44,
+  minHeight: 42,
+  px: 2.25,
   borderColor: "transparent",
   color: themeColors.text,
   backgroundColor: themeColors.card,
-  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.08)",
+  boxShadow: "0 8px 18px rgba(15, 23, 42, 0.06)",
   "&:hover": {
     borderColor: "transparent",
     backgroundColor: themeColors.background,
-    boxShadow: "0 10px 20px rgba(15, 23, 42, 0.12)"
+    boxShadow: "0 14px 28px rgba(15, 23, 42, 0.10)"
   }
 };
 
 const successButtonSx = {
   ...modernButtonBaseSx,
-  minHeight: 44,
+  minHeight: 42,
+  px: 2.25,
   backgroundColor: themeColors.success,
   color: "#fff",
-  boxShadow: "0 8px 20px rgba(34, 197, 94, 0.2)",
+  boxShadow: "0 10px 24px rgba(34, 197, 94, 0.18)",
   "&:hover": {
     backgroundColor: themeColors.successHover,
-    boxShadow: "0 12px 24px rgba(34, 197, 94, 0.24)"
+    boxShadow: "0 16px 32px rgba(34, 197, 94, 0.22)"
   },
   "&.Mui-disabled": {
     backgroundColor: themeColors.successBorder,
@@ -139,13 +142,14 @@ const successButtonSx = {
 
 const dangerButtonSx = {
   ...modernButtonBaseSx,
-  minHeight: 44,
+  minHeight: 42,
+  px: 2.25,
   backgroundColor: themeColors.danger,
   color: "#fff",
-  boxShadow: "0 8px 20px rgba(239, 68, 68, 0.18)",
+  boxShadow: "0 10px 24px rgba(239, 68, 68, 0.16)",
   "&:hover": {
     backgroundColor: themeColors.dangerHover,
-    boxShadow: "0 12px 24px rgba(239, 68, 68, 0.22)"
+    boxShadow: "0 16px 32px rgba(239, 68, 68, 0.20)"
   },
   "&.Mui-disabled": {
     backgroundColor: themeColors.dangerBorder,
@@ -198,41 +202,57 @@ const tableHeaderCellSx = {
 };
 
 const tableBodyCellSx = {
-  borderBottom: `1px solid ${themeColors.border}`,
-  verticalAlign: "top"
+  borderBottom: "none",
+  verticalAlign: "middle"
 };
 
 const statusChipSx = {
-  height: 26,
+  height: 28,
   fontWeight: 700,
-  fontSize: "0.75rem",
+  fontSize: "0.72rem",
   borderRadius: 999,
-  border: "none",
+  border: "1px solid transparent",
   transition: "background-color 0.2s ease, color 0.2s ease, transform 0.2s ease",
   "& .MuiChip-label": {
-    px: 1.25
+    px: 1.4
   }
 };
 
 const actionTextButtonSx = {
   ...modernButtonBaseSx,
   minWidth: 88,
-  px: 1.5,
+  px: 2.25,
   py: 0.5,
-  minHeight: 36,
-  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.08)"
+  minHeight: 42,
+  boxShadow: "0 8px 18px rgba(15, 23, 42, 0.06)"
 };
 
+const filterButtonSx = (isActive) => ({
+  ...modernButtonBaseSx,
+  minHeight: 42,
+  px: 2.25,
+  borderRadius: "999px",
+  border: `1px solid ${isActive ? themeColors.primary : themeColors.border}`,
+  backgroundColor: isActive ? themeColors.primarySoft : themeColors.card,
+  color: isActive ? themeColors.primary : themeColors.text,
+  boxShadow: "none",
+  "&:hover": {
+    backgroundColor: isActive ? themeColors.primarySoft : themeColors.background,
+    borderColor: isActive ? themeColors.primary : themeColors.primaryBorder,
+    boxShadow: "none"
+  }
+});
+
 const surfaceCardSx = {
-  borderRadius: 4,
-  border: "none",
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05)",
+  borderRadius: 5,
+  border: `1px solid rgba(229, 231, 235, 0.9)`,
+  boxShadow: "0 12px 32px rgba(15, 23, 42, 0.06)",
   backgroundColor: themeColors.card,
-  transition: "transform 0.2s ease, box-shadow 0.2s ease"
+  transition: "transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease"
 };
 
 const sectionCardContentSx = {
-  p: { xs: 2.5, md: 3 }
+  p: { xs: 2.75, md: 3.25 }
 };
 
 const pageTitleSx = {
@@ -266,10 +286,15 @@ const metricValueSx = {
 function Dashboard() {
   const navigate = useNavigate();
   const username = localStorage.getItem("username") || "User";
+  const userInitials = username
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() || "")
+    .join("") || "U";
   const [activeSection, setActiveSection] = useState("dashboard");
   const [tasks, setTasks] = useState([]);
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [toast, setToast] = useState({ open: false, message: "", severity: "success" });
   const [isLoading, setIsLoading] = useState(true);
   const [isCreating, setIsCreating] = useState(false);
   const [activeTaskId, setActiveTaskId] = useState(null);
@@ -280,15 +305,22 @@ function Dashboard() {
   const [editingTask, setEditingTask] = useState(null);
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
+  const [taskPendingDelete, setTaskPendingDelete] = useState(null);
+  const [taskFilter, setTaskFilter] = useState("all");
+  const [searchText, setSearchText] = useState("");
+  const isTaskActionBusy = isLoading || isCreating || isSavingEdit || activeTaskId !== null;
+
+  const showToast = (message, severity = "success") => {
+    setToast({ open: true, message, severity });
+  };
 
   const loadTasks = async () => {
     try {
       setIsLoading(true);
-      setError("");
       const { data } = await taskService.fetchMyTasks();
       setTasks(data);
     } catch (loadError) {
-      setError(loadError.response?.data || "Unable to load tasks.");
+      showToast(loadError.response?.data || "Unable to load tasks.", "error");
     } finally {
       setIsLoading(false);
     }
@@ -326,14 +358,38 @@ function Dashboard() {
     ];
   }, [tasks]);
 
+  const filteredTasks = useMemo(() => {
+    const normalizedSearch = searchText.trim().toLowerCase();
+
+    return tasks.filter((task) => {
+      const matchesFilter =
+        taskFilter === "completed"
+          ? task.isCompleted
+          : taskFilter === "open"
+            ? !task.isCompleted
+            : true;
+
+      const matchesSearch = task.title.toLowerCase().includes(normalizedSearch);
+
+      return matchesFilter && matchesSearch;
+    });
+  }, [searchText, taskFilter, tasks]);
+
   const openEditDialog = (task) => {
+    if (isTaskActionBusy) {
+      return;
+    }
+
     setEditingTask(task);
     setEditTitle(task.title);
     setEditDescription(task.description || "");
   };
 
   const openAddDialog = () => {
-    setError("");
+    if (isTaskActionBusy) {
+      return;
+    }
+
     setIsAddDialogOpen(true);
   };
 
@@ -349,12 +405,11 @@ function Dashboard() {
 
   const handleAddTask = async () => {
     if (!title.trim()) {
-      setError("Title is required.");
+      showToast("Title is required.", "error");
       return;
     }
 
     try {
-      setError("");
       setIsCreating(true);
       await taskService.addTask({
         title: title.trim(),
@@ -362,10 +417,10 @@ function Dashboard() {
         isCompleted: false
       });
       closeAddDialog();
-      setSuccessMessage("Task created successfully.");
+      showToast("Task created successfully.");
       await loadTasks();
     } catch (createError) {
-      setError(createError.response?.data || "Unable to create task.");
+      showToast(createError.response?.data || "Unable to create task.", "error");
     } finally {
       setIsCreating(false);
     }
@@ -377,14 +432,29 @@ function Dashboard() {
     setEditDescription("");
   };
 
+  const openDeleteDialog = (task) => {
+    if (isTaskActionBusy) {
+      return;
+    }
+
+    setTaskPendingDelete(task);
+  };
+
+  const closeDeleteDialog = () => {
+    if (taskPendingDelete && activeTaskId === taskPendingDelete.id) {
+      return;
+    }
+
+    setTaskPendingDelete(null);
+  };
+
   const handleSaveEdit = async () => {
     if (!editingTask || !editTitle.trim()) {
-      setError("Title is required.");
+      showToast("Title is required.", "error");
       return;
     }
 
     try {
-      setError("");
       setIsSavingEdit(true);
       await taskService.updateTask(editingTask.id, {
         title: editTitle.trim(),
@@ -392,24 +462,30 @@ function Dashboard() {
         isCompleted: editingTask.isCompleted
       });
       closeEditDialog();
-      setSuccessMessage("Task updated successfully.");
+      showToast("Task updated successfully.");
       await loadTasks();
     } catch (saveError) {
-      setError(saveError.response?.data || "Unable to update task.");
+      showToast(saveError.response?.data || "Unable to update task.", "error");
     } finally {
       setIsSavingEdit(false);
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
+    if (!taskPendingDelete) {
+      return;
+    }
+
+    const { id } = taskPendingDelete;
+
     try {
-      setError("");
       setActiveTaskId(id);
       await taskService.deleteTask(id);
-      setSuccessMessage("Task deleted successfully.");
+      setTaskPendingDelete(null);
+      showToast("Task deleted successfully.");
       await loadTasks();
     } catch (deleteError) {
-      setError(deleteError.response?.data || "Unable to delete task.");
+      showToast(deleteError.response?.data || "Unable to delete task.", "error");
     } finally {
       setActiveTaskId(null);
     }
@@ -417,13 +493,12 @@ function Dashboard() {
 
   const handleComplete = async (id) => {
     try {
-      setError("");
       setActiveTaskId(id);
       await taskService.markComplete(id);
-      setSuccessMessage("Task marked as complete.");
+      showToast("Task marked as complete.");
       await loadTasks();
     } catch (completeError) {
-      setError(completeError.response?.data || "Unable to complete task.");
+      showToast(completeError.response?.data || "Unable to complete task.", "error");
     } finally {
       setActiveTaskId(null);
     }
@@ -524,6 +599,12 @@ function Dashboard() {
                     <Typography sx={{ fontWeight: 600 }}>Tasks</Typography>
                   </Stack>
                 </ListItemButton>
+                <ListItemButton onClick={() => navigate("/profile")} sx={sidebarItemSx}>
+                  <Stack direction="row" spacing={1.25} alignItems="center">
+                    <UserCircle2 size={18} strokeWidth={2.2} />
+                    <Typography sx={{ fontWeight: 600 }}>Profile</Typography>
+                  </Stack>
+                </ListItemButton>
                 <ListItemButton onClick={handleLogout} sx={sidebarItemSx}>
                   <Stack direction="row" spacing={1.25} alignItems="center">
                     <LogOut size={18} strokeWidth={2.2} />
@@ -573,10 +654,10 @@ function Dashboard() {
                 <Box
                   sx={{
                     display: "flex",
-                    flexDirection: { xs: "column", sm: "row" },
-                    alignItems: { xs: "stretch", sm: "center" },
+                    flexDirection: { xs: "column", lg: "row" },
+                    alignItems: { xs: "stretch", lg: "center" },
                     justifyContent: "flex-end",
-                    gap: { xs: 1.5, sm: 2.5 },
+                    gap: { xs: 1.5, sm: 2, lg: 2.5 },
                     width: { xs: "100%", lg: "auto" },
                     ml: { lg: "auto" }
                   }}
@@ -584,7 +665,13 @@ function Dashboard() {
                   <Button
                     variant="contained"
                     onClick={openAddDialog}
-                    sx={{ ...primaryButtonSx, minHeight: 40, px: 2.25 }}
+                    disabled={isTaskActionBusy}
+                    sx={{
+                      ...primaryButtonSx,
+                      minWidth: { sm: 148 },
+                      fontSize: "0.95rem",
+                      boxShadow: "0 14px 32px rgba(79, 70, 229, 0.24)"
+                    }}
                   >
                     Add Task
                   </Button>
@@ -592,18 +679,56 @@ function Dashboard() {
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "flex-end",
+                      justifyContent: { xs: "space-between", sm: "flex-end" },
                       gap: 1.5,
-                      ml: { sm: "auto" }
+                      px: { xs: 1.5, sm: 1.75 },
+                      py: 1,
+                      borderRadius: 999,
+                      border: `1px solid ${themeColors.border}`,
+                      backgroundColor: "#FCFCFD",
+                      boxShadow: "0 10px 24px rgba(15, 23, 42, 0.05)",
+                      ml: { lg: "auto" }
                     }}
                   >
-                    <Typography variant="body1" sx={{ whiteSpace: "nowrap", fontWeight: 600, color: themeColors.text }}>
-                      {username}
-                    </Typography>
+                    <Stack direction="row" spacing={1.25} alignItems="center">
+                      <Box
+                        sx={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: "50%",
+                          display: "grid",
+                          placeItems: "center",
+                          background: "linear-gradient(135deg, #4F46E5 0%, #6366F1 100%)",
+                          color: "#fff",
+                          fontWeight: 700,
+                          fontSize: "0.95rem",
+                          letterSpacing: "-0.02em",
+                          boxShadow: "0 10px 22px rgba(79, 70, 229, 0.22)"
+                        }}
+                      >
+                        {userInitials}
+                      </Box>
+                      <Box sx={{ minWidth: 0 }}>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            whiteSpace: "nowrap",
+                            fontWeight: 700,
+                            color: themeColors.text,
+                            lineHeight: 1.2
+                          }}
+                        >
+                          {username}
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: themeColors.mutedText, fontWeight: 500, lineHeight: 1.2 }}>
+                          Workspace member
+                        </Typography>
+                      </Box>
+                    </Stack>
                     <Button
                       variant="outlined"
                       onClick={handleLogout}
-                      sx={{ ...secondaryButtonSx, minHeight: 40, px: 2.25 }}
+                      sx={{ ...secondaryButtonSx, ml: { sm: 0.5 } }}
                     >
                       Logout
                     </Button>
@@ -612,8 +737,6 @@ function Dashboard() {
               </Box>
             </CardContent>
           </Card>
-
-          {error && <Alert severity="error">{error}</Alert>}
 
           {activeSection === "dashboard" ? (
             <Stack spacing={{ xs: 2.5, sm: 3, md: 3.5 }} sx={{ flex: 1 }}>
@@ -697,6 +820,39 @@ function Dashboard() {
               </Typography>
             </Box>
 
+            <Card sx={surfaceCardSx}>
+              <CardContent sx={{ ...sectionCardContentSx, pb: "20px !important" }}>
+                <Stack spacing={2}>
+                  <TextField
+                    placeholder="Search tasks by title"
+                    value={searchText}
+                    onChange={(event) => setSearchText(event.target.value)}
+                    fullWidth
+                    size="small"
+                    disabled={isTaskActionBusy}
+                    sx={monochromeFieldSx}
+                  />
+                  <Stack direction="row" spacing={1.25} useFlexGap flexWrap="wrap">
+                    {[
+                      { label: "All", value: "all" },
+                      { label: "Completed", value: "completed" },
+                      { label: "Open", value: "open" }
+                    ].map((filterOption) => (
+                      <Button
+                        key={filterOption.value}
+                        variant="outlined"
+                        onClick={() => setTaskFilter(filterOption.value)}
+                        disabled={isTaskActionBusy}
+                        sx={filterButtonSx(taskFilter === filterOption.value)}
+                      >
+                        {filterOption.label}
+                      </Button>
+                    ))}
+                  </Stack>
+                </Stack>
+              </CardContent>
+            </Card>
+
             {isLoading ? (
               <Card
                 sx={{
@@ -704,13 +860,37 @@ function Dashboard() {
                 }}
               >
                 <CardContent sx={sectionCardContentSx}>
-                  <Stack spacing={1.5} alignItems="center" justifyContent="center" sx={{ py: 3 }}>
-                    <CircularProgress size={28} />
-                    <Typography sx={{ color: themeColors.mutedText, fontWeight: 500 }}>Loading tasks...</Typography>
+                  <Stack spacing={1.5} alignItems="center" justifyContent="center" sx={{ py: 4 }}>
+                    <CircularProgress size={30} thickness={4.2} />
+                    <Typography sx={{ color: themeColors.mutedText, fontWeight: 600 }}>Loading tasks...</Typography>
                   </Stack>
                 </CardContent>
               </Card>
             ) : tasks.length === 0 ? (
+              <Card
+                sx={{
+                  ...surfaceCardSx,
+                  backgroundColor: themeColors.background,
+                  boxShadow: "none",
+                  border: `1px solid ${themeColors.border}`
+                }}
+              >
+                <CardContent sx={sectionCardContentSx}>
+                  <Stack alignItems="center" justifyContent="center" sx={{ py: 6, textAlign: "center" }}>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: themeColors.mutedText,
+                        fontWeight: 500,
+                        maxWidth: 360
+                      }}
+                    >
+                      No tasks found. Create your first task.
+                    </Typography>
+                  </Stack>
+                </CardContent>
+              </Card>
+            ) : filteredTasks.length === 0 ? (
               <Card
                 sx={{
                   ...surfaceCardSx
@@ -719,10 +899,10 @@ function Dashboard() {
                 <CardContent sx={sectionCardContentSx}>
                   <Stack spacing={1} alignItems="center" justifyContent="center" sx={{ py: 3, textAlign: "center" }}>
                     <Typography variant="h6" sx={sectionTitleSx}>
-                      No tasks found.
+                      No matching tasks.
                     </Typography>
                     <Typography sx={{ color: themeColors.mutedText, fontWeight: 500 }}>
-                      Create your first task 🚀
+                      Try a different search or filter.
                     </Typography>
                   </Stack>
                 </CardContent>
@@ -730,7 +910,14 @@ function Dashboard() {
             ) : (
               <Box sx={{ width: "100%" }}>
                 <TableContainer sx={{ width: "100%", backgroundColor: "transparent" }}>
-                  <Table sx={{ minWidth: { xs: 640, md: 720 }, width: "100%" }}>
+                  <Table
+                    sx={{
+                      minWidth: { xs: 640, md: 720 },
+                      width: "100%",
+                      borderCollapse: "separate",
+                      borderSpacing: "0 12px"
+                    }}
+                  >
                     <TableHead>
                       <TableRow>
                         <TableCell sx={{ ...tableHeaderCellSx, px: 2, py: 2 }}>Title</TableCell>
@@ -739,18 +926,38 @@ function Dashboard() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {tasks.map((task) => (
+                      {filteredTasks.map((task) => (
                         <TableRow
                           key={task.id}
                           hover
                           sx={{
-                            transition: "background-color 0.2s ease, transform 0.2s ease",
+                            "& td": {
+                              backgroundColor: themeColors.card,
+                              borderTop: `1px solid ${themeColors.border}`,
+                              borderBottom: `1px solid ${themeColors.border}`
+                            },
+                            "& td:first-of-type": {
+                              borderLeft: `1px solid ${themeColors.border}`,
+                              borderTopLeftRadius: 18,
+                              borderBottomLeftRadius: 18
+                            },
+                            "& td:last-of-type": {
+                              borderRight: `1px solid ${themeColors.border}`,
+                              borderTopRightRadius: 18,
+                              borderBottomRightRadius: 18
+                            },
+                            transition: "transform 0.24s ease",
                             "&:hover": {
-                              backgroundColor: "#f3f4f6"
+                              transform: "translateY(-2px)"
+                            },
+                            "&:hover td": {
+                              backgroundColor: "#FCFCFF",
+                              borderColor: themeColors.primaryBorder,
+                              boxShadow: "0 14px 30px rgba(15, 23, 42, 0.08)"
                             }
                           }}
                         >
-                          <TableCell sx={{ ...tableBodyCellSx, px: 2, py: 2 }}>
+                          <TableCell sx={{ ...tableBodyCellSx, px: 2.5, py: 2.25, width: "48%" }}>
                             <Stack spacing={0.75}>
                               <Typography
                                 variant="body1"
@@ -770,26 +977,26 @@ function Dashboard() {
                               ) : null}
                             </Stack>
                           </TableCell>
-                          <TableCell sx={{ ...tableBodyCellSx, px: 2, py: 2 }}>
-                            <Stack alignItems="flex-start" spacing={1}>
+                          <TableCell sx={{ ...tableBodyCellSx, px: 2.5, py: 2.25, width: "22%" }}>
+                            <Stack alignItems="flex-start" spacing={1} justifyContent="center">
                               <Chip
                                 label={task.isCompleted ? "Completed" : "Open"}
                                 sx={{
                                   ...statusChipSx,
-                                  backgroundColor: task.isCompleted ? themeColors.success : "#E5E7EB",
-                                  color: task.isCompleted ? "#FFFFFF" : "#4B5563",
+                                  backgroundColor: task.isCompleted ? themeColors.successSoft : "#FEF3C7",
+                                  borderColor: task.isCompleted ? themeColors.successBorder : themeColors.warningBorder,
+                                  color: task.isCompleted ? "#166534" : themeColors.warningText,
                                   boxShadow: "none"
                                 }}
                               />
                               {!task.isCompleted ? (
                                 <Button
-                                  variant="contained"
-                                  onClick={() => handleComplete(task.id)}
-                                  disabled={activeTaskId === task.id}
+                                variant="contained"
+                                onClick={() => handleComplete(task.id)}
+                                  disabled={isTaskActionBusy}
                                   sx={{
                                     ...successButtonSx,
-                                    minHeight: 30,
-                                    px: 1.5,
+                                    minHeight: 42,
                                     py: 0.5,
                                     fontSize: "0.8125rem"
                                   }}
@@ -803,21 +1010,22 @@ function Dashboard() {
                               ) : null}
                             </Stack>
                           </TableCell>
-                          <TableCell sx={{ ...tableBodyCellSx, px: 2, py: 2 }}>
-                            <Stack direction="row" spacing={1} flexWrap="nowrap" alignItems="center">
+                          <TableCell sx={{ ...tableBodyCellSx, px: 2.5, py: 2.25, width: "30%" }}>
+                            <Stack direction="row" spacing={1.25} flexWrap="nowrap" alignItems="center" justifyContent="flex-start">
                               <Button
                                 variant="outlined"
                                 onClick={() => openEditDialog(task)}
+                                disabled={isTaskActionBusy}
                                 sx={{
                                   ...actionTextButtonSx,
                                   color: themeColors.text,
                                   borderColor: "transparent",
                                   backgroundColor: themeColors.card,
-                                  boxShadow: "0 1px 2px rgba(15, 23, 42, 0.06)",
+                                  boxShadow: "0 8px 18px rgba(15, 23, 42, 0.06)",
                                   "&:hover": {
                                     borderColor: "transparent",
-                                    backgroundColor: themeColors.background,
-                                    boxShadow: "0 4px 12px rgba(15, 23, 42, 0.08)"
+                                    backgroundColor: "#F8FAFC",
+                                    boxShadow: "0 14px 28px rgba(15, 23, 42, 0.10)"
                                   }
                                 }}
                               >
@@ -825,13 +1033,11 @@ function Dashboard() {
                               </Button>
                               <Button
                                 variant="contained"
-                                onClick={() => handleDelete(task.id)}
-                                disabled={activeTaskId === task.id}
+                                onClick={() => openDeleteDialog(task)}
+                                disabled={isTaskActionBusy}
                                 sx={{
                                   ...dangerButtonSx,
                                   minWidth: 88,
-                                  minHeight: 36,
-                                  px: 1.5,
                                   py: 0.5,
                                   fontSize: "0.8125rem"
                                 }}
@@ -903,14 +1109,14 @@ function Dashboard() {
           </Stack>
         </DialogContent>
         <DialogActions sx={{ px: 3, pb: 2.5, pt: 1 }}>
-          <Button onClick={closeAddDialog} sx={{ ...secondaryButtonSx, minHeight: 36, px: 2 }}>
+          <Button onClick={closeAddDialog} sx={secondaryButtonSx}>
             Cancel
           </Button>
           <Button
             variant="contained"
             onClick={handleAddTask}
             disabled={isCreating}
-            sx={{ ...primaryButtonSx, minHeight: 36, px: 2.25 }}
+            sx={primaryButtonSx}
           >
             {isCreating ? <CircularProgress size={16} color="inherit" /> : "Create"}
           </Button>
@@ -931,7 +1137,16 @@ function Dashboard() {
           }
         }}
       >
-        <DialogTitle sx={{ pb: 1.25, ...sectionTitleSx }}>Edit Task</DialogTitle>
+        <DialogTitle sx={{ pb: 1.25 }}>
+          <Stack spacing={0.5}>
+            <Typography variant="h6" sx={sectionTitleSx}>
+              Edit Task
+            </Typography>
+            <Typography variant="body2" sx={{ color: themeColors.mutedText, fontWeight: 500 }}>
+              Update task details in a focused modal.
+            </Typography>
+          </Stack>
+        </DialogTitle>
         <DialogContent sx={{ pt: "8px !important", pb: 1.5 }}>
           <Stack spacing={1.75}>
             <TextField
@@ -956,28 +1171,87 @@ function Dashboard() {
           </Stack>
         </DialogContent>
         <DialogActions sx={{ px: 3, pb: 2.5, pt: 1 }}>
-          <Button onClick={closeEditDialog} sx={{ ...secondaryButtonSx, minHeight: 36, px: 2 }}>
+          <Button onClick={closeEditDialog} sx={secondaryButtonSx}>
             Cancel
           </Button>
           <Button
             variant="contained"
             onClick={handleSaveEdit}
             disabled={isSavingEdit}
-            sx={{ ...primaryButtonSx, minHeight: 36, px: 2.25 }}
+            sx={primaryButtonSx}
           >
             {isSavingEdit ? <CircularProgress size={16} color="inherit" /> : "Save"}
           </Button>
         </DialogActions>
       </Dialog>
 
+      <Dialog
+        open={Boolean(taskPendingDelete)}
+        onClose={closeDeleteDialog}
+        fullWidth
+        maxWidth="xs"
+        PaperProps={{
+          sx: {
+            borderRadius: 3,
+            border: "none",
+            boxShadow: "0 18px 48px rgba(15, 23, 42, 0.12)",
+            backgroundColor: themeColors.card
+          }
+        }}
+      >
+        <DialogTitle sx={{ pb: 1.25 }}>
+          <Stack spacing={0.5}>
+            <Typography variant="h6" sx={sectionTitleSx}>
+              Delete Task
+            </Typography>
+            <Typography variant="body2" sx={{ color: themeColors.mutedText, fontWeight: 500 }}>
+              This action will permanently remove the selected task.
+            </Typography>
+          </Stack>
+        </DialogTitle>
+        <DialogContent sx={{ pt: "8px !important", pb: 1.5 }}>
+          <Typography sx={{ color: themeColors.text, fontWeight: 500 }}>
+            {taskPendingDelete
+              ? `Are you sure you want to delete "${taskPendingDelete.title}"?`
+              : "Are you sure you want to delete this task?"}
+          </Typography>
+        </DialogContent>
+        <DialogActions sx={{ px: 3, pb: 2.5, pt: 1 }}>
+          <Button onClick={closeDeleteDialog} sx={secondaryButtonSx}>
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleDelete}
+            disabled={taskPendingDelete ? activeTaskId === taskPendingDelete.id : false}
+            sx={dangerButtonSx}
+          >
+            {taskPendingDelete && activeTaskId === taskPendingDelete.id ? (
+              <CircularProgress size={16} color="inherit" />
+            ) : (
+              "Delete"
+            )}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <Snackbar
-        open={Boolean(successMessage)}
+        open={toast.open}
         autoHideDuration={3000}
-        onClose={() => setSuccessMessage("")}
+        onClose={() => setToast((currentToast) => ({ ...currentToast, open: false }))}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
-        <Alert onClose={() => setSuccessMessage("")} severity="success" variant="filled">
-          {successMessage}
+        <Alert
+          onClose={() => setToast((currentToast) => ({ ...currentToast, open: false }))}
+          severity={toast.severity}
+          variant="filled"
+          sx={{
+            borderRadius: 3,
+            boxShadow: "0 16px 36px rgba(15, 23, 42, 0.18)",
+            minWidth: 260
+          }}
+        >
+          {toast.message}
         </Alert>
       </Snackbar>
     </Box>
