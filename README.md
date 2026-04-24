@@ -1,116 +1,77 @@
-# 🗂️ Task Management System
+# 🚀 TaskFlow – Task Management System
 
-A full-stack Task Management System built using **React.js**, **.NET Core Web API**, and **SQL Server** with secure **JWT Authentication**.
-
----
-
-## 🚀 Features
-
-* 🔐 User Authentication (Register / Login / Change Password)
-* ✅ Create, Update, Delete Tasks
-* 📌 Mark Tasks as Complete
-* 📊 Dashboard with Task Statistics
-* 🔒 Protected APIs using JWT
-* 🧱 Clean Architecture (Repository Pattern)
+A full-stack Task Management System built using **React.js**, **.NET Core Web API**, and **SQL Server**.  
+This application allows users to manage daily tasks efficiently with authentication, filtering, and a clean dashboard UI.
 
 ---
 
-## 🛠️ Tech Stack
+## 🔥 Features
 
-### Frontend
-
-* React.js
-* Axios
-* React Router
-
-### Backend
-
-* .NET Core Web API
-* Entity Framework Core
-* Repository Pattern
-
-### Database
-
-* SQL Server
-
-### Authentication
-
-* JWT (JSON Web Token)
+- 🔐 User Authentication using JWT
+- 📝 Create, Update, Delete Tasks
+- ✅ Mark Tasks as Complete
+- 🔍 Filter Tasks (All / Completed / Pending)
+- 📊 Dashboard Overview (Task Stats)
+- 👤 User-specific task management
 
 ---
 
-## 📁 Project Structure
+## 🛠 Tech Stack
 
-```
-task-management-system/
-│
-├── frontend/     # React Application
-├── backend/      # .NET Core Web API
-```
-
----
-
-## ⚙️ Getting Started
-
-### 🔹 Backend Setup
-
-```
-cd backend
-dotnet restore
-dotnet run
-```
-
----
-
-### 🔹 Frontend Setup
-
-```
-cd frontend
-npm install
-npm start
-```
-
----
-
-## 🔐 API Overview
-
-* `POST /api/Users/register` → Register new user
-* `POST /api/Users/login` → Login & get JWT token
-* `GET /api/Tasks/my-tasks` → Get user tasks
-* `POST /api/Tasks` → Create task
-* `PUT /api/Tasks/{id}` → Update task
-* `DELETE /api/Tasks/{id}` → Delete task
+- **Frontend:** React.js  
+- **Backend:** .NET Core Web API  
+- **Database:** SQL Server  
 
 ---
 
 ## 📸 Screenshots
 
+### 🔐 Login
+![Login](./screenshots/login.png)
 
+### 📊 Dashboard
+![Dashboard](./screenshots/dashboard.png)
 
-## 💡 Highlights
-
-* Secure user-based task access using JWT
-* Clean separation of concerns (Controller → Service → Repository)
-* Scalable and maintainable backend architecture
-* Responsive and user-friendly UI
-
----
-
-## 📌 Future Improvements
-
-* Task filtering & search
-* Due dates & priority
-* Notifications / reminders
-* Pagination
+### ✅ Tasks
+![Tasks](./screenshots/tasks.png)
 
 ---
 
-## 👨‍💻 Author
+## 🛠 Setup Instructions
 
-GitHub: https://github.com/gkdev512-lang
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/gkdev512-lang/task-management-system.git
+cd task-management-system
+2️⃣ Setup Database
+Open SQL Server
+Run script:
+/database/db_script.sql
+3️⃣ Run Backend
+cd backend
+dotnet run
+4️⃣ Run Frontend
+cd frontend
+npm install
+npm start
+5️⃣ Access Application
+http://localhost:3000
 
----
+👉 Register a new user and login
 
-## ⭐ Show Your Support
+📂 Project Structure
+task-management-system/
+│
+├── frontend/        # React UI
+├── backend/         # .NET Core API
+├── database/        # SQL Scripts
+├── screenshots/     # Project Images
+└── README.md
+💡 Future Improvements
+Add task priority (High / Medium / Low)
+Add due dates for tasks
+Add notifications / alerts
+Improve UI with advanced components
+👨‍💻 Author
 
-If you like this project, give it a ⭐ on GitHub!
+Gaurav
